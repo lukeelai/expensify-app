@@ -13,7 +13,7 @@ import "./styles/styles.scss";
 
 const store = configureStore();
 store.dispatch(
-  addExpense({ description: "Water Bill", amount: 1000, createdAt: 0 })
+  addExpense({ description: "Water Bill", amount: 4500, createdAt: 0 })
 );
 
 store.dispatch(
@@ -23,7 +23,7 @@ store.dispatch(
 store.dispatch(setTextFilter("Water"));
 
 setTimeout(() => {
-  store.dispatch(setTextFilter("Rent"));
+  store.dispatch(setTextFilter("Bill"));
 }, 3000);
 
 const state = store.getState();
