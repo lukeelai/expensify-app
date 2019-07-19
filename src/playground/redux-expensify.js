@@ -36,6 +36,7 @@ const filtersReducerDefaultState = {
   startDate: undefined,
   endDate: undefined
 };
+
 const expensesReducer = (state = expensesReducerDefaultState, action) => {
   switch (action.type) {
     case "ADD_EXPENSE":

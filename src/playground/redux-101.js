@@ -1,5 +1,6 @@
 import { createStore } from "redux";
 
+//ACTION GENERATORS
 const incrementCount = ({ incrementBy = 1 } = {}) => ({
   type: "INCREMENT",
   incrementBy
@@ -19,7 +20,7 @@ const resetCount = () => ({
   type: "RESET"
 });
 
-//Reducers
+//REDUCERS
 // 1. Reducers are pure functions - doesn't interact with things outside of the reducer scope
 // 2. Never change state or action
 
@@ -46,6 +47,7 @@ const countReducer = (state = { count: 0 }, action) => {
   }
 };
 
+//STORE
 const store = createStore(countReducer);
 
 const unsubscribe = store.subscribe(() => {
