@@ -1,5 +1,3 @@
-// grab the add function from the add.js file in the utils folder
-// grab react from the npm modile
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
@@ -13,15 +11,27 @@ import "./styles/styles.scss";
 
 const store = configureStore();
 store.dispatch(
-  addExpense({ description: "Water Bill", amount: 4500, createdAt: 0 })
+  addExpense({
+    description: "Water Bill",
+    amount: 4500,
+    createdAt: 1562785200000
+  })
 );
 
 store.dispatch(
-  addExpense({ description: "Gas Bill", amount: 0, createdAt: 1000 })
+  addExpense({
+    description: "Gas Bill",
+    amount: 0,
+    createdAt: 1563822000000
+  })
 );
 
 store.dispatch(
-  addExpense({ description: "Rent", amount: 109500, createdAt: 0 })
+  addExpense({
+    description: "Rent",
+    amount: 109500,
+    createdAt: 1564599600000
+  })
 );
 
 const state = store.getState();
