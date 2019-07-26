@@ -42,7 +42,7 @@ test("should set start date filter", () => {
     startDate
   };
   const state = filtersReducer(undefined, action);
-  expect(state.startDate).toBe(startDate);
+  expect(state.startDate).toEqual(startDate);
 });
 
 test("should set end date filter", () => {
@@ -52,5 +52,5 @@ test("should set end date filter", () => {
     endDate
   };
   const state = filtersReducer(undefined, action);
-  expect(state.endDate).toBe(endDate);
+  expect(state.endDate).toEqual(endDate);
 });
