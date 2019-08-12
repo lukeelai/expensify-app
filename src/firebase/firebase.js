@@ -14,66 +14,43 @@ firebase.initializeApp(firebaseConfig);
 
 const database = firebase.database();
 
-database
-  .ref()
-  .set({
-    name: "Luke",
-    age: 25,
-    stressLevel: 6,
-    job: {
-      title: "Software Developer",
-      company: "Google"
-    },
-    isSingle: false,
-    location: {
-      city: "Davis",
-      country: "USA"
-    }
-  })
-  .then(() => {
-    console.log("Data saved");
-  })
-  .catch(e => {
-    console.log("This failed", e);
-  });
+// database
+//   .ref("expenses")
+//   .once("value")
+//   .then(snapshot => {
+//     const expenses = [];
+//     snapshot.forEach(childSnapshot => {
+//       expenses.push({
+//         id: childSnapshot.key,
+//         ...childSnapshot.val()
+//       });
+//     });
+//     console.log(expenses);
+//   });
 
-const onValueChange = database.ref().on(
+database.ref("expenses").on("child_removed", snapshot => {
+  console.log(snapshot.key, snapshot.val());
+});
+
+database.ref("expenses").on("child_changed", snapshot => {
+  console.log(snapshot.key, snapshot.val());
+});
+
+database.ref("expenses").on("child_added", snapshot => {
+  console.log(snapshot.key, snapshot.val());
+});
+
+const onValueChange = database.ref("expenses").on(
   "value",
   snapshot => {
     const val = snapshot.val();
-    console.log(`${val.name} is a ${val.job.title} at ${val.job.company}`);
+    console.log(val);
   },
   e => {
     console.log("error with data fetching", e);
   }
 );
 
-database
-  .ref()
-  .update({
-    stressLevel: 9,
-    "job/company": "Amazon",
-    "location/city": "Seattle"
-  })
-  .then(() => {
-    console.log("Update Item");
-  })
-  .catch(e => {
-    console.log("Fail to update item", e);
-  });
-
-setTimeout(() => {
-  database.ref().off("value", onValueChange);
-}, 5000);
-
-setTimeout(() => {
-  database
-    .ref("isSingle")
-    .remove()
-    .then(() => {
-      console.log("Remove Item");
-    })
-    .catch(e => {
-      console.log("Failed to remove item", e);
-    });
-}, 7000);
+// setTimeout(() => {
+//   database.ref().off("value", onValueChange);
+// }, 5000);
