@@ -12,9 +12,32 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
-firebase
-  .database()
+const database = firebase.database();
+
+database
   .ref()
   .set({
-    name: "Luke"
+    name: "Luke",
+    age: 25,
+    isSingle: false,
+    location: {
+      city: "Davis",
+      state: "CA"
+    }
+  })
+  .then(() => {
+    console.log("Data saved");
+  })
+  .catch(e => {
+    console.log("This failed", e);
+  });
+
+database
+  .ref("isSingle")
+  .remove()
+  .then(() => {
+    console.log("Remove Item");
+  })
+  .catch(e => {
+    console.log("Failed to remove item", e);
   });
