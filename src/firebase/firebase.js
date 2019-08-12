@@ -37,15 +37,16 @@ database
     console.log("This failed", e);
   });
 
-database
-  .ref("isSingle")
-  .remove()
-  .then(() => {
-    console.log("Remove Item");
-  })
-  .catch(e => {
-    console.log("Failed to remove item", e);
-  });
+const onValueChange = database.ref().on(
+  "value",
+  snapshot => {
+    const val = snapshot.val();
+    console.log(`${val.name} is a ${val.job.title} at ${val.job.company}`);
+  },
+  e => {
+    console.log("error with data fetching", e);
+  }
+);
 
 database
   .ref()
@@ -60,3 +61,19 @@ database
   .catch(e => {
     console.log("Fail to update item", e);
   });
+
+setTimeout(() => {
+  database.ref().off("value", onValueChange);
+}, 5000);
+
+setTimeout(() => {
+  database
+    .ref("isSingle")
+    .remove()
+    .then(() => {
+      console.log("Remove Item");
+    })
+    .catch(e => {
+      console.log("Failed to remove item", e);
+    });
+}, 7000);
