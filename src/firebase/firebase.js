@@ -19,10 +19,15 @@ database
   .set({
     name: "Luke",
     age: 25,
+    stressLevel: 6,
+    job: {
+      title: "Software Developer",
+      company: "Google"
+    },
     isSingle: false,
     location: {
       city: "Davis",
-      state: "CA"
+      country: "USA"
     }
   })
   .then(() => {
@@ -40,4 +45,18 @@ database
   })
   .catch(e => {
     console.log("Failed to remove item", e);
+  });
+
+database
+  .ref()
+  .update({
+    stressLevel: 9,
+    "job/company": "Amazon",
+    "location/city": "Seattle"
+  })
+  .then(() => {
+    console.log("Update Item");
+  })
+  .catch(e => {
+    console.log("Fail to update item", e);
   });
