@@ -14,6 +14,8 @@ firebase.initializeApp(firebaseConfig);
 
 const database = firebase.database();
 
+export { firebase, database as default };
+
 // database
 //   .ref("expenses")
 //   .once("value")
@@ -28,28 +30,28 @@ const database = firebase.database();
 //     console.log(expenses);
 //   });
 
-database.ref("expenses").on("child_removed", snapshot => {
-  console.log(snapshot.key, snapshot.val());
-});
+// database.ref("expenses").on("child_removed", snapshot => {
+//   console.log(snapshot.key, snapshot.val());
+// });
 
-database.ref("expenses").on("child_changed", snapshot => {
-  console.log(snapshot.key, snapshot.val());
-});
+// database.ref("expenses").on("child_changed", snapshot => {
+//   console.log(snapshot.key, snapshot.val());
+// });
 
-database.ref("expenses").on("child_added", snapshot => {
-  console.log(snapshot.key, snapshot.val());
-});
+// database.ref("expenses").on("child_added", snapshot => {
+//   console.log(snapshot.key, snapshot.val());
+// });
 
-const onValueChange = database.ref("expenses").on(
-  "value",
-  snapshot => {
-    const val = snapshot.val();
-    console.log(val);
-  },
-  e => {
-    console.log("error with data fetching", e);
-  }
-);
+// const onValueChange = database.ref("expenses").on(
+//   "value",
+//   snapshot => {
+//     const val = snapshot.val();
+//     console.log(val);
+//   },
+//   e => {
+//     console.log("error with data fetching", e);
+//   }
+// );
 
 // setTimeout(() => {
 //   database.ref().off("value", onValueChange);
